@@ -6,8 +6,8 @@ CREATE TABLE administrador
 (
     -- Informações de administrador
     id    SERIAL PRIMARY KEY,
-    email VARCHAR(60) UNIQUE,
-    senha CHAR(64)
+    email VARCHAR(60) UNIQUE NOT NULL,
+    senha CHAR(64) NOT NULL
 );
 
 -- Criando tabela plano
@@ -27,7 +27,7 @@ CREATE TABLE empresa
     id        SERIAL PRIMARY KEY,
     nome      VARCHAR(60) NOT NULL,
     email     VARCHAR(60) UNIQUE NOT NULL,
-    cnpj      CHAR(18) CHECK (LENGTH(cnpj) >= 14),
+    cnpj      CHAR(18) NOT NULL CHECK (cnpj ~'^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2}$'),
 
     --     Informações do endereço de empresa
     uf        VARCHAR(2) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE telefone_empresa
 (
     -- Informações de telefone de empresa
     id          SERIAL PRIMARY KEY,
-    telefone    CHAR(20) UNIQUE,
+    telefone    CHAR(20) NOT NULL UNIQUE,
     cod_empresa INT REFERENCES empresa(id)
 );
 
@@ -55,15 +55,15 @@ CREATE TABLE empregado
     id                 SERIAL PRIMARY KEY,
     nome               VARCHAR(70) NOT NULL,
     sobrenome          VARCHAR(60),
-    cpf                CHAR(14) NOT NULL UNIQUE CHECK (LENGTH(cpf) >= 11),
+    cpf                CHAR(14) NOT NULL UNIQUE CHECK (cpf ~'^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$'),
     email              VARCHAR(60) UNIQUE NOT NULL,
     senha              CHAR(64) NOT NULL,
-    telefone_empregado CHAR(20) UNIQUE,
+    telefone_empregado CHAR(20) NOT NULL UNIQUE,
     cargo              VARCHAR(50) NOT NULL,
     tipo               VARCHAR(10) CHECK (tipo IN ('OPERARIO', 'GESTOR')),
 
     --     Informações de endereço do empregado
-    uf                 VARCHAR(2) NOT NULL,
+    uf                 VARCHAR(2) NOT NULL CHECK (uf ~'^[A-Z]{2}$'),
     cidade             VARCHAR(60) NOT NULL,
     bairro             VARCHAR(60) NOT NULL,
     cep                CHAR(9),
@@ -117,7 +117,7 @@ CREATE TABLE descarte
 (
     -- Informações de descarte
     id             SERIAL PRIMARY KEY,
-    descarte_kg    NUMERIC(10,2) CHECK (descarte_kg >= 0),
+    descarte_kg    NUMERIC(10,2) NOT NULL CHECK (descarte_kg >= 0),
     custo_estimado MONEY CHECK (custo_estimado >= 0::MONEY),
     horario        TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     observacao     TEXT,
@@ -140,6 +140,5 @@ CREATE TABLE trabalha_em
 (
     -- Informações de trabalha em
     cod_setor_turno INT REFERENCES setor_turno(id),
-    cod_empregado   INT REFERENCES
-        empregado(id)
+    cod_empregado   INT REFERENCES empregado(id)
 );
