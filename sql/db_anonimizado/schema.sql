@@ -13,7 +13,7 @@ CREATE TABLE empresa_anonimizada
     cep    CHAR(8),
     bairro VARCHAR(60),
     rua    VARCHAR(60),
-    numero INT
+    numero VARCHAR(5)
 );
 
 -- Criando tabela telefone de empresa anonimizado
@@ -45,6 +45,6 @@ CREATE TABLE empregado_anonimizado
     bairro             VARCHAR(60),
     cep                CHAR(8),
     rua                VARCHAR(60),
-    numero             INT,
+    numero             VARCHAR(5),
     cod_empresa        INT REFERENCES empresa_anonimizada (id)
 );
