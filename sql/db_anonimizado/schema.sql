@@ -21,7 +21,7 @@ CREATE TABLE telefone_anonimizado_empresa
 (
     -- Informações de telefone de empresa anonimizado
     id          INT PRIMARY KEY,
-    telefoneEmpregado    CHAR(15) UNIQUE,
+    telefone   CHAR(15) UNIQUE,
     cod_empresa INT REFERENCES empresa_anonimizada (id)
 );
 
