@@ -1,5 +1,5 @@
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
+drop schema public cascade
+create schema public
 
 -- Criando tabela administrador
 CREATE TABLE administrador
@@ -29,7 +29,7 @@ CREATE TABLE empresa
     nome      VARCHAR(60)        NOT NULL,
     email     VARCHAR(60) UNIQUE NOT NULL,
     senha     CHAR(64),
-    cnpj      CHAR(18) UNIQUE NOT NULL CHECK (cnpj ~'^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2}$'),
+    cnpj      CHAR(18) UNIQUE    NOT NULL CHECK (cnpj ~ '^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2}$'),
 
     --     Informações do endereço de empresa
     uf        VARCHAR(2)         NOT NULL,
@@ -87,20 +87,19 @@ CREATE TABLE motivo
 CREATE TABLE embalagem
 (
     -- Informações de embalagem
-    id         SERIAL PRIMARY KEY,
-    nome       VARCHAR(60) NOT NULL,
-    tipo       VARCHAR(50) NOT NULL,
-    valor_kg   NUMERIC(10, 2) CHECK (valor_kg >= 0) DEFAULT 0
+    id       SERIAL PRIMARY KEY,
+    nome     VARCHAR(60) NOT NULL,
+    tipo     VARCHAR(50) NOT NULL,
+    valor_kg NUMERIC(10, 2) CHECK (valor_kg >= 0) DEFAULT 0
 );
 
 -- Criando tabela de midia
 CREATE TABLE midia
 (
     -- Informações de midia
-    id              SERIAL PRIMARY KEY,
-    caminho_arquivo TEXT,
-    arquivo         bytea,
-    horario         TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id      SERIAL PRIMARY KEY,
+    base64 TEXT,
+    horario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Criando tabela de descarte
