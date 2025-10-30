@@ -1,5 +1,8 @@
-drop schema public cascade
-create schema public
+-- Extensão de criptografia
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- Altera locale
+ALTER DATABASE db_involucre SET lc_time = 'pt_BR.UTF-8';
 
 -- Criando tabela administrador
 CREATE TABLE administrador

@@ -1,6 +1,3 @@
--- Extensão de criptografia
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
-
 -- Inserindo os emails e senhas do administradores
 INSERT INTO administrador (nome, email, senha)
 VALUES ('Davi', 'davialiaga4@gmail.com', ENCODE(digest('Jones', 'sha256'), 'hex')),
@@ -49,8 +46,10 @@ VALUES ('(11) 96154-4521', 1),
 INSERT INTO empregado (nome, sobrenome, cpf, email, telefone_empregado, cargo, tipo, uf, cidade, bairro, cep, rua, numero, cod_empresa, senha)
 VALUES ('Ricardo', 'Estrella', '551.888.022-89', 'ringo_estrella@gmail.com', '(11) 96139-4309', 'Operário', 'OPERÁRIO', 'SP', 'São Paulo', 'Freguesia do Ó', '02910-055', 'Balsa', 123, 1, ENCODE(digest('1234567890', 'sha256'), 'hex')),
        ('João', 'Lino', '382.222.125-87', 'john.lino@aragao5.com.br', '(66) 98455-1122', 'Gerente de Produção', 'OPERÁRIO', 'MT', 'Feliz Natal', 'Centro', '78885-000', 'Maravilha', 10, 2, ENCODE(digest('MinhaSenha', 'sha256'), 'hex')),
-       ('Jorge', 'Hélio', '026.198.544-00', 'jorge_helio@cereshaume.com', '(31) 98744-7788', 'Operário', 'OPERÁRIO', 'MG', 'Itabira', 'Fênix', '35901-226', 'Mares', 50, 3, ENCODE(digest('Jonses', 'sha256'), 'hex')),
+       ('Jorge', 'Hélio', '026.198.544-00', 'jorge_helio@cereshaume.com', '(31) 98744-7788', 'Supervisor Operacional','OPERÁRIO', 'MG','Itabira', 'Fênix', '35901-226', 'Mares', 50, 3, ENCODE(digest('Jonses', 'sha256'), 'hex')),
        ('Paulo', 'Lobato', '455.888.542-77', 'paulomclobato@kusteralimentos.com', '(51) 99670-8452', 'Ajudante Operacional', 'OPERÁRIO', 'RS', 'Porto Alegre', 'Moinhos de Vento', '90510-040', 'Hilário Ribeiro', 252, 4, ENCODE(digest('6363636!', 'sha256'), 'hex')),
+       ('Gabriel', 'Isepe', '098.055.055-78', 'gabriel.isepe@cereshaume.com', '(21) 95598-1593', 'Assistente de Logística', 'OPERÁRIO', 'MG', 'Itabira', 'Santa Ruth', '35901-185', 'José Luiz Gonzaga', 293, 3, ENCODE(digest('nisflei_flex_justify_content_space_around', 'sha256'), 'hex')),
+       ('Beatriz', 'Dias Aliaga', '038.055.071-78', 'beatriz.aliaga@gmail.com', '(11) 96098-1593', 'Operário', 'OPERÁRIO', 'SP', 'São Paulo', 'Moinho Velho', '02960-000', 'João Cordeiro', 910, 1, ENCODE(digest('eta_bixo', 'sha256'), 'hex')),
        ('Caio Venceslau', 'Cunha', '546.759.412-88', 'caio.cunha@maluceli.com.br', '(71) 94026-9445', 'Diretor Geral', 'GESTOR', 'BA', 'Salvador', 'Pelourinho', '40026-270', 'Dna. Amália Chinen', 277, 5, ENCODE(digest('BalticASDFGHJ', 'sha256'), 'hex'));
 
 -- Dados de motivo
